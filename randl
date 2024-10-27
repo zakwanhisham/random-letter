@@ -1,0 +1,35 @@
+#!/usr/bin/python
+
+import sys
+import random
+import string
+import time
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: randl <target_string>")
+        sys.exit(1)
+
+    target = sys.argv[1]
+
+    letters = string.ascii_letters
+    result = ""
+
+    for letter in target:
+        while True:
+            l = random.choice(letters)
+            print(result + l)
+            if l == letter:
+                result += l
+                break
+            time.sleep(0.1)
+
+    if result == target:
+        print("---------------")
+        print(result)
+        print("---------------")
+
+
+if __name__ == "__main__":
+    main()
