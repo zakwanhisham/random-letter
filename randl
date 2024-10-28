@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-import sys
 import random
 import string
+import sys
 import time
 
 
@@ -18,7 +18,7 @@ def main():
 
     for letter in target:
         while True:
-            l = random.choice(letters)
+            l = random.choice(letters)  # noqa: E741
             print(result + l)
             if l == letter:
                 result += l
