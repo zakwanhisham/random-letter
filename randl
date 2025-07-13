@@ -5,6 +5,17 @@ import string
 import sys
 import time
 
+# this is a comment
+class Colors:
+    """ANSI escape sequences for colored terminal output."""
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 def main():
     if len(sys.argv) < 2:
@@ -18,17 +29,22 @@ def main():
 
     for letter in target:
         while True:
-            l = random.choice(letters)  # noqa: E741
-            print(result + l)
+            l = random.choice(letters)
+            if l.isupper():
+                print(Colors.OKBLUE + result + l + Colors.ENDC, end='\n', flush=True)
+            elif l.islower():
+                print(Colors.OKGREEN + result + l + Colors.ENDC, end='\n', flush=True)
+            else:
+                print(Colors.FAIL + result + l + Colors.ENDC, end='\n', flush=True)
             if l == letter:
                 result += l
                 break
             time.sleep(0.1)
 
     if result == target:
-        print("---------------")
-        print(result)
-        print("---------------")
+        print(Colors.FAIL + "---------------" + Colors.ENDC, end='\n', flush=True)
+        print(Colors.BOLD + Colors.UNDERLINE + result + Colors.ENDC, end='\n', flush=True)
+        print(Colors.FAIL + "---------------" + Colors.ENDC, end='\n', flush=True)
 
 
 if __name__ == "__main__":
